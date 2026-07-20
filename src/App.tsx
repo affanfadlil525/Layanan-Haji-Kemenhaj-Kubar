@@ -21,7 +21,9 @@ import {
   Sparkles,
   FileText,
   Download,
-  Printer
+  Printer,
+  ChevronDown,
+  BookOpen
 } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 
@@ -36,7 +38,7 @@ interface Requirement {
 
 // --- Constants ---
 const CONTACT_INFO = {
-  phone: "+6287719934369",
+  phone: "+6281248797139",
   email: "kutaibaratkab@haji.go.id",
   address: "Melak Ulu, Melak, Kabupaten Kutai Barat, Kalimantan Timur 75775",
   hours: {
@@ -116,6 +118,33 @@ const REQUIREMENTS: Record<ServiceType, Requirement[]> = {
   ]
 };
 
+const INFO_GUIDES = [
+  {
+    id: "estimasi",
+    title: "Cek Estimasi Keberangkatan & Nomor Porsi Haji",
+    description: "Setelah melakukan daftar haji reguler di Kantor Kementerian Haji dan Umrah (Kemenhaj) Kutai Barat, jemaah akan menerima 10 digit Nomor Porsi Haji. Nomor porsi ini merupakan bukti resmi pendaftaran yang dapat digunakan untuk mengecek perkiraan tahun keberangkatan haji Anda melalui sistem online resmi atau langsung berkonsultasi dengan petugas layanan terpadu kami di Melak Ulu, Kutai Barat.",
+    tags: ["Nomor Porsi", "Estimasi Haji"]
+  },
+  {
+    id: "kuota",
+    title: "Kuota Haji Kabupaten Kutai Barat",
+    description: "Kuota haji untuk Kabupaten Kutai Barat dialokasikan setiap tahunnya berdasarkan keputusan resmi Kementerian Haji dan Umrah RI bersama Pemerintah Provinsi Kalimantan Timur. Informasi kuota terbaru dan daftar tunggu (waiting list) jemaah haji Kutai Barat dapat dipantau langsung melalui sistem informasi haji terpadu kami.",
+    tags: ["Kuota Haji", "Kutai Barat"]
+  },
+  {
+    id: "daftar",
+    title: "Syarat & Alur Pendaftaran Haji Reguler",
+    description: "Untuk mendaftar haji reguler di Kemenhaj Kubar, langkah pertama adalah membuka rekening tabungan haji di Bank Penerima Setoran (BPS) BPIH sebesar Rp25.000.000 untuk mendapatkan nomor validasi. Setelah itu, bawa seluruh dokumen persyaratan (KTP, KK, Akta Lahir, Buku Rekening) ke kantor kami untuk proses input data dan penerbitan Surat Pendaftaran Haji (SPPH).",
+    tags: ["Daftar Haji", "Kemenhaj Kubar"]
+  },
+  {
+    id: "umrah",
+    title: "Panduan Ibadah Umrah Mandiri & Travel Resmi",
+    description: "Bagi masyarakat Kutai Barat yang ingin melaksanakan ibadah Umrah, kami mengimbau agar selalu memilih Penyelenggara Perjalanan Ibadah Umrah (PPIU) resmi yang terdaftar di Kementerian Haji dan Umrah RI. Pastikan prinsip '5 Pasti Umrah': Pasti Travelnya, Pasti Jadwalnya, Pasti Terbangnya, Pasti Hotelnya, dan Pasti Visanya agar terhindar dari penipuan.",
+    tags: ["Umrah", "Travel Resmi"]
+  }
+];
+
 // --- Components ---
 
 const BottomNav = ({ activeScreen, setScreen }: { activeScreen: Screen, setScreen: (s: Screen) => void }) => (
@@ -188,16 +217,33 @@ export default function App() {
   const [tanggalWafat, setTanggalWafat] = useState('');
   
   const [selectedTemplate, setSelectedTemplate] = useState('pelimpahan_permohonan');
+  const [activeGuide, setActiveGuide] = useState<string | null>(null);
 
   const handleServiceClick = (type: ServiceType) => {
     setActiveService(type);
     setScreen('details');
   };
 
-  // Scroll to top on screen change
+  // Scroll to top on screen change and update document title dynamically for SEO
   useEffect(() => {
     window.scrollTo(0, 0);
-  }, [screen]);
+    
+    let pageTitle = "Layanan Haji Terpadu Kemenhaj Kutai Barat";
+    if (screen === 'details') {
+      const serviceNames: Record<ServiceType, string> = {
+        registration: "Pendaftaran Haji",
+        transfer: "Pelimpahan Porsi Haji (Wafat/Sakit)",
+        cancellation: "Pembatalan Haji & Refund Dana"
+      };
+      pageTitle = `${serviceNames[activeService]} - Kemenhaj Kutai Barat`;
+    } else if (screen === 'forms') {
+      pageTitle = "Unduh Formulir & Template Berkas Haji - Kemenhaj Kutai Barat";
+    } else if (screen === 'contact') {
+      pageTitle = "Kontak & Alamat Kantor Kemenhaj Kutai Barat";
+    }
+    
+    document.title = `${pageTitle} | kemenhajkubar.web.id`;
+  }, [screen, activeService]);
 
   // Document templates lists
   const documentTemplates = [
@@ -582,6 +628,60 @@ export default function App() {
                 </div>
               </section>
 
+              <section className="space-y-4">
+                <div className="flex items-center gap-2 ml-1">
+                  <BookOpen size={16} className="text-emerald-600" />
+                  <h3 className="text-xs font-bold text-zinc-400 uppercase tracking-widest">Panduan & Informasi Haji Terpadu</h3>
+                </div>
+                <div className="space-y-3">
+                  {INFO_GUIDES.map((guide) => {
+                    const isOpen = activeGuide === guide.id;
+                    return (
+                      <div 
+                        key={guide.id}
+                        className="bg-white rounded-3xl border border-zinc-100 shadow-sm overflow-hidden transition-all duration-200"
+                      >
+                        <button
+                          onClick={() => setActiveGuide(isOpen ? null : guide.id)}
+                          className="w-full p-5 flex items-center justify-between gap-4 text-left font-bold text-sm text-zinc-900 hover:bg-zinc-50/50 transition-colors"
+                        >
+                          <span className="flex-1 pr-2">{guide.title}</span>
+                          <ChevronDown 
+                            size={18} 
+                            className={`text-zinc-400 shrink-0 transition-transform duration-200 ${isOpen ? 'rotate-180 text-emerald-600' : ''}`} 
+                          />
+                        </button>
+                        
+                        <AnimatePresence initial={false}>
+                          {isOpen && (
+                            <motion.div
+                              initial={{ height: 0, opacity: 0 }}
+                              animate={{ height: 'auto', opacity: 1 }}
+                              exit={{ height: 0, opacity: 0 }}
+                              transition={{ duration: 0.2 }}
+                              className="border-t border-zinc-50"
+                            >
+                              <div className="p-5 pt-4 bg-emerald-50/20 space-y-3">
+                                <p className="text-xs text-zinc-600 leading-relaxed font-medium">
+                                  {guide.description}
+                                </p>
+                                <div className="flex gap-1.5 flex-wrap pt-1">
+                                  {guide.tags.map((tag, idx) => (
+                                    <span key={idx} className="px-2 py-0.5 rounded-md bg-emerald-50 text-emerald-700 text-[9px] font-bold uppercase tracking-wider">
+                                      #{tag}
+                                    </span>
+                                  ))}
+                                </div>
+                              </div>
+                            </motion.div>
+                          )}
+                        </AnimatePresence>
+                      </div>
+                    );
+                  })}
+                </div>
+              </section>
+
               <section className="bg-white p-6 rounded-[2.5rem] border border-zinc-100 shadow-sm">
                 <div className="flex items-center gap-3 mb-4">
                   <div className="w-10 h-10 rounded-2xl bg-emerald-50 text-emerald-600 flex items-center justify-center">
@@ -778,7 +878,7 @@ export default function App() {
                   <p className="text-xs text-zinc-400 font-medium">Melak Ulu, Kutai Barat</p>
                 </div>
                 <a 
-                  href={`https://maps.app.goo.gl/b5GSJ4JGKxviioN38=${encodeURIComponent(CONTACT_INFO.address)}`}
+                  href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(CONTACT_INFO.address)}`}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="text-xs font-bold text-emerald-600 uppercase tracking-widest"

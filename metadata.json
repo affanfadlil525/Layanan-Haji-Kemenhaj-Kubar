@@ -1,5 +1,6 @@
 {
   "name": "Kemenhaj Kutai Barat",
-  "description": "Aplikasi informasi layanan pendaftaran, pembatalan, dan pelimpahan porsi haji Kabupaten Kutai Barat di bawah Kementerian Haji dan Umrah RI.",
-  "requestFramePermissions": []
+  "description": "Aplikasi informasi layanan pendaftaran, pembatalan, dan pelimpahan porsi haji Kabupaten Kutai Barat di bawah Kementerian Haji dan Umrah RI dengan fitur editor foto bertenaga AI.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
 }

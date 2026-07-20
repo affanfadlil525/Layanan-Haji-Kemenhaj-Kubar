@@ -1,13 +1,115 @@
 <!doctype html>
-<html lang="en">
+<html lang="id">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Layanan Haji Kemenhaj Kutai Barat</title>
+    
+    <!-- Global Script Error Filter for Extension Injection and Iframe Bugs -->
+    <script>
+      (function() {
+        window.addEventListener('error', function(event) {
+          var msg = event.message || '';
+          if (
+            msg.indexOf('ethereum') !== -1 ||
+            msg.indexOf('Failed to get initial state') !== -1 ||
+            msg.indexOf('redefine property') !== -1
+          ) {
+            event.preventDefault();
+            event.stopPropagation();
+          }
+        }, true);
+
+        window.addEventListener('unhandledrejection', function(event) {
+          var reason = event.reason;
+          var msg = '';
+          if (reason) {
+            if (typeof reason === 'string') {
+              msg = reason;
+            } else if (typeof reason === 'object' && typeof reason.message === 'string') {
+              msg = reason.message;
+            }
+          }
+          if (
+            msg.indexOf('ethereum') !== -1 ||
+            msg.indexOf('Failed to get initial state') !== -1 ||
+            msg.indexOf('redefine property') !== -1
+          ) {
+            event.preventDefault();
+            event.stopPropagation();
+          }
+        }, true);
+      })();
+    </script>
+
+    <!-- Primary SEO Metadata -->
+    <title>Layanan Haji & Umrah Terpadu Kemenhaj Kutai Barat | kemenhajkubar.web.id</title>
+    <meta name="description" content="Pusat Layanan Haji & Umrah Terpadu Kantor Kementerian Haji dan Umrah Kabupaten Kutai Barat. Informasi daftar haji, kuota haji, estimasi keberangkatan haji, pelimpahan nomor porsi waris, pembatalan haji, dan cetak formulir mandiri secara online." />
+    <meta name="keywords" content="kemenhaj kubar, kemenhajkubar, kemenhajkubar.web.id, daftar haji, haji, kuota haji, estimasi haji, umrah, porsi, porsi haji, cek porsi haji, kuota haji kubar, estimasi keberangkatan haji kutai barat, kementerian haji dan umrah kutai barat, kementerian haji kubar, bimbingan haji melak, nomor porsi haji" />
+    <meta name="author" content="Kantor Kementerian Haji dan Umrah Kabupaten Kutai Barat" />
+    <meta name="robots" content="index, follow" />
+    <link rel="canonical" href="https://kemenhajkubar.web.id/" />
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://kemenhajkubar.web.id/" />
+    <meta property="og:title" content="Layanan Haji & Umrah Terpadu Kemenhaj Kutai Barat" />
+    <meta property="og:description" content="Pusat Layanan Haji & Umrah Terpadu Kantor Kementerian Haji dan Umrah Kabupaten Kutai Barat. Layanan daftar haji, informasi kuota haji, estimasi haji, syarat pelimpahan porsi waris, pembatalan porsi haji, dan cetak formulir secara online." />
+    <meta property="og:site_name" content="Kemenhaj Kutai Barat" />
+    <meta property="og:locale" content="id_ID" />
+    <meta property="og:image" content="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 630' fill='%23059669'><rect width='1200' height='630'/><circle cx='600' cy='280' r='100' fill='%23111827'/><rect x='540' y='220' width='120' height='120' fill='%231f2937'/><rect x='540' y='245' width='120' height='15' fill='%23f59e0b'/><text x='600' y='460' font-family='sans-serif' font-size='48' font-weight='bold' fill='white' text-anchor='middle'>Kemenhaj Kutai Barat</text><text x='600' y='510' font-family='sans-serif' font-size='28' fill='%23a7f3d0' text-anchor='middle'>Layanan Haji &amp; Umrah Terpadu</text></svg>" />
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:url" content="https://kemenhajkubar.web.id/" />
+    <meta name="twitter:title" content="Layanan Haji & Umrah Terpadu Kemenhaj Kutai Barat" />
+    <meta name="twitter:description" content="Pusat Layanan Haji & Umrah Terpadu Kantor Kementerian Haji dan Umrah Kabupaten Kutai Barat. Layanan daftar haji, informasi kuota haji, estimasi haji, syarat pelimpahan porsi waris, pembatalan porsi haji, dan cetak formulir secara online." />
+    <meta name="twitter:image" content="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 630' fill='%23059669'><rect width='1200' height='630'/><circle cx='600' cy='280' r='100' fill='%23111827'/><rect x='540' y='220' width='120' height='120' fill='%231f2937'/><rect x='540' y='245' width='120' height='15' fill='%23f59e0b'/><text x='600' y='460' font-family='sans-serif' font-size='48' font-weight='bold' fill='white' text-anchor='middle'>Kemenhaj Kutai Barat</text><text x='600' y='510' font-family='sans-serif' font-size='28' fill='%23a7f3d0' text-anchor='middle'>Layanan Haji &amp; Umrah Terpadu</text></svg>" />
+
+    <!-- Custom SVG Favicon -->
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='22' fill='%23059669'/><rect x='28' y='28' width='44' height='44' rx='6' fill='%23111827'/><rect x='28' y='38' width='44' height='6' fill='%23f59e0b'/><circle cx='50' cy='50' r='2' fill='white'/></svg>" />
+
+    <!-- JSON-LD Structured Data for Government Office -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "GovernmentOffice",
+        "name": "Layanan Haji Terpadu Kemenhaj Kutai Barat",
+        "alternateName": "Kemenhaj Kutai Barat Haji & Umrah",
+        "description": "Layanan online terpadu Kantor Kementerian Haji dan Umrah Kabupaten Kutai Barat untuk pendaftaran haji reguler, pelimpahan nomor porsi, dan pembatalan haji.",
+        "url": "https://kemenhajkubar.web.id/",
+        "logo": "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='22' fill='%23059669'/><rect x='28' y='28' width='44' height='44' rx='6' fill='%23111827'/><rect x='28' y='38' width='44' height='6' fill='%23f59e0b'/></svg>",
+        "image": "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 630' fill='%23059669'><rect width='1200' height='630'/><circle cx='600' cy='280' r='100' fill='%23111827'/><rect x='540' y='220' width='120' height='120' fill='%231f2937'/><rect x='540' y='245' width='120' height='15' fill='%23f59e0b'/></text></svg>",
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "Melak Ulu, Melak",
+          "addressLocality": "Kabupaten Kutai Barat",
+          "addressRegion": "Kalimantan Timur",
+          "postalCode": "75775",
+          "addressCountry": "ID"
+        },
+        "contactPoint": {
+          "@type": "ContactPoint",
+          "telephone": "+628123456789",
+          "contactType": "customer service",
+          "email": "kutaibaratkab@haji.go.id"
+        },
+        "openingHoursSpecification": {
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": [
+            "Monday",
+            "Tuesday",
+            "Wednesday",
+            "Thursday",
+            "Friday"
+          ],
+          "opens": "08:00",
+          "closes": "16:00"
+        }
+      }
+    </script>
   </head>
   <body>
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>
-
