@@ -1,0 +1,8 @@
+User-agent: *
+Allow: /
+
+# Hostname
+Host: https://kemenhajkubar.web.id
+
+# Sitemap Link for Search Engines
+Sitemap: https://kemenhajkubar.web.id/sitemap.xml
